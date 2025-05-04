@@ -7,7 +7,7 @@ export default function Home() {
     <main className='bg-linear-to-br from-gray-100 to-[#F8F8F8] flex flex-col'>
       <section
         id='section-1'
-        className='min-h-[100vh] relative flex justify-start items-end overflow-hidden'
+        className='min-h-[100vh] relative flex justify-start items-end overflow-hidden border-b-3 border-[#222]'
       >
         <MainTitle />
         <Spheres />

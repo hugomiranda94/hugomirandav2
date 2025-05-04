@@ -5,19 +5,21 @@ import * as THREE from 'three';
 
 function Octahedrons() {
   const items = useRef<(THREE.Mesh | null)[]>([]);
-  const { camera, gl } = useThree();
+  //   const { camera, gl } = useThree();
   const [scrollY, setScrollY] = useState(0);
-  const speed = 1 / 500;
+  const speed = 1 / 1000;
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
   // Set up positions
   useEffect(() => {
     if (!items.current.length) return;
-    if (items.current[0]) items.current[0].position.z = 0;
-    if (items.current[1]) items.current[1].position.z = -0.5;
-    if (items.current[2]) items.current[2].position.z = -1.5;
-    if (items.current[3]) items.current[3].position.z = -2;
-    if (items.current[4]) items.current[4].position.z = -4;
+    items.current.forEach((item, i) => {
+      if (item) {
+        item.position.x = 0;
+        item.position.y = -3;
+        item.position.z = 0;
+      }
+    });
   }, []);
 
   // Handle mouse movement
@@ -55,10 +57,10 @@ function Octahedrons() {
 
   // Animation loop
   useFrame(() => {
-    const cameraZ = scrollY / -500;
-    camera.position.z = cameraZ;
-    camera.position.x = scrollY / -2000;
-    camera.position.y = scrollY / -1500;
+    // const cameraZ = scrollY / -500;
+    // camera.position.z = cameraZ;
+    // camera.position.x = scrollY / -2000;
+    // camera.position.y = scrollY / -1500;
 
     // Animate items
     if (items.current.length) {
@@ -87,7 +89,7 @@ function Octahedrons() {
         <mesh
           key={i}
           ref={(el) => (items.current[i] = el)}
-          geometry={new THREE.OctahedronGeometry(1, 2)}
+          geometry={new THREE.OctahedronGeometry((i + 1) * 3, 2)}
           material={new THREE.MeshDepthMaterial({ wireframe: true })}
         />
       ))}
@@ -98,11 +100,11 @@ function Octahedrons() {
 export default function Spheres() {
   return (
     <div
-      className='hero__3d opacity-25 absolute top-0 left-0'
-      style={{ width: '100vw', height: '100vh' }}
+      className='hero__3d opacity-25 absolute top-0 left-0 translate-x-[10%]'
+      style={{ width: '120vw', height: '120vh' }}
     >
       <Canvas
-        camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 1] }}
+        camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 18] }}
         gl={{ alpha: true }}
       >
         <Octahedrons />
