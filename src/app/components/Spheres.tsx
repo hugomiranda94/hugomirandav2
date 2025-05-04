@@ -1,19 +1,19 @@
 'use client';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 function Octahedrons() {
   const items = useRef<(THREE.Mesh | null)[]>([]);
-  //   const { camera, gl } = useThree();
   const [scrollY, setScrollY] = useState(0);
+  console.log('Scroll Y:', scrollY);
   const speed = 0.75;
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
   // Set up positions
   useEffect(() => {
     if (!items.current.length) return;
-    items.current.forEach((item, i) => {
+    items.current.forEach((item) => {
       if (item) {
         item.position.x = 0;
         item.position.y = -3;
@@ -44,6 +44,7 @@ function Octahedrons() {
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Scroll handler
