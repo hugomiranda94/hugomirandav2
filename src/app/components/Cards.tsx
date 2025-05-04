@@ -1,5 +1,5 @@
 'use client';
-import { use, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -17,9 +17,9 @@ export default function Cards() {
   };
 
   const generateRandomPosition = () => {
-    const randomX = Math.floor(Math.random() * 300) * randomSymbol();
-    const randomY = Math.floor(Math.random() * 300) * randomSymbol();
-    const randomRotation = Math.floor(Math.random() * 120) * randomSymbol();
+    const randomX = Math.floor(Math.random() * 300 + 50) * randomSymbol();
+    const randomY = Math.floor(Math.random() * 300 + 50) * randomSymbol();
+    const randomRotation = Math.floor(Math.random() * 100) * randomSymbol();
     return { rotation: randomRotation, y: `${randomY}px`, x: `${randomX}px` };
   };
 
