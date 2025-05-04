@@ -7,7 +7,7 @@ function Octahedrons() {
   const items = useRef<(THREE.Mesh | null)[]>([]);
   //   const { camera, gl } = useThree();
   const [scrollY, setScrollY] = useState(0);
-  const speed = 1 / 1000;
+  const speed = 0.75;
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
   // Set up positions
@@ -63,18 +63,22 @@ function Octahedrons() {
     // camera.position.y = scrollY / -1500;
 
     // Animate items
-    if (items.current.length) {
-      if (items.current[0]) items.current[0].rotation.x += speed;
-      if (items.current[0]) items.current[0].rotation.y += speed;
-      if (items.current[1]) items.current[1].rotation.x -= speed * 2;
-      if (items.current[1]) items.current[1].rotation.y -= speed * 2;
-      if (items.current[2]) items.current[2].rotation.x += speed / 3;
-      if (items.current[2]) items.current[2].rotation.y += speed / 3;
-      if (items.current[3]) items.current[3].rotation.x += speed * 3;
-      if (items.current[3]) items.current[3].rotation.y += speed * 3;
-      if (items.current[4]) items.current[4].rotation.x += speed * 4;
-      if (items.current[4]) items.current[4].rotation.y += speed * 4;
-    }
+
+    items.current.forEach((item, i) => {
+      if (item) {
+        let symbol = i % 2 === 0 ? 1 : -1;
+        let relativeSpeed = speed / 100;
+        let coefficient = 1 / ((i + 1) * 0.5);
+        let finalRotation = coefficient * relativeSpeed * symbol;
+        item.rotation.x += finalRotation;
+        item.rotation.y += finalRotation;
+      }
+    });
+
+    // let idx = 0;
+
+    // if (items.current[idx]) items.current[idx].rotation.x += speed * 4;
+    // if (items.current[idx]) items.current[idx].rotation.y += speed * 4;
   });
 
   return (
@@ -100,7 +104,7 @@ function Octahedrons() {
 export default function Spheres() {
   return (
     <div
-      className='hero__3d opacity-25 absolute top-0 left-0 translate-x-[10%]'
+      className='hero__3d opacity-20 absolute top-0 left-0 translate-x-[10%]'
       style={{ width: '120vw', height: '120vh' }}
     >
       <Canvas
