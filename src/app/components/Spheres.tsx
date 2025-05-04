@@ -26,6 +26,7 @@ function Octahedrons() {
   useEffect(() => {
     if (isMobile) return;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleMouseMove = (e: { movementX: any; movementY: any }) => {
       const dx = e.movementX;
       const dy = e.movementY;
@@ -66,19 +67,14 @@ function Octahedrons() {
 
     items.current.forEach((item, i) => {
       if (item) {
-        let symbol = i % 2 === 0 ? 1 : -1;
-        let relativeSpeed = speed / 100;
-        let coefficient = 1 / ((i + 1) * 0.5);
-        let finalRotation = coefficient * relativeSpeed * symbol;
+        const symbol = i % 2 === 0 ? 1 : -1;
+        const relativeSpeed = speed / 100;
+        const coefficient = 1 / ((i + 1) * 0.5);
+        const finalRotation = coefficient * relativeSpeed * symbol;
         item.rotation.x += finalRotation;
         item.rotation.y += finalRotation;
       }
     });
-
-    // let idx = 0;
-
-    // if (items.current[idx]) items.current[idx].rotation.x += speed * 4;
-    // if (items.current[idx]) items.current[idx].rotation.y += speed * 4;
   });
 
   return (

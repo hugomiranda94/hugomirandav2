@@ -9,7 +9,7 @@ export default function Cards() {
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
-    let tl = gsap.timeline({
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '#section-1',
         pin: false,

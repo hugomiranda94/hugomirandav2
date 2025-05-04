@@ -30,7 +30,7 @@ export default function Cards() {
 
   const container = useRef(null);
   useGSAP(() => {
-    let tl = gsap.timeline({
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '#section-2',
         pin: false,
