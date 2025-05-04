@@ -21,7 +21,12 @@ export default function Cards() {
 
     // add animations and labels to the timeline
     tl.addLabel('start')
-      .from('#main-title', { rotation: -90, x: '16px', y: '75px' })
+      .from('#main-title', {
+        rotation: -90,
+        x: '16px',
+        y: '75px',
+        ease: 'power2.out',
+      })
       .addLabel('end');
   });
 
