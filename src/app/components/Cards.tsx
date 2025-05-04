@@ -1,35 +1,39 @@
 'use client';
-import { useRef } from 'react';
+import { use, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const randomSymbol = () => {
-  return Math.random() < 0.5 ? -1 : 1;
-};
-
-const generateRandomPosition = () => {
-  const randomX = Math.floor(Math.random() * 300) * randomSymbol();
-  const randomY = Math.floor(Math.random() * 300) * randomSymbol();
-  const randomRotation = Math.floor(Math.random() * 120) * randomSymbol();
-  return { rotation: randomRotation, y: `${randomY}px`, x: `${randomX}px` };
-};
-
-const randomPositions = {
-  card1: generateRandomPosition(),
-  card2: generateRandomPosition(),
-  card3: generateRandomPosition(),
-  card4: generateRandomPosition(),
-};
-
-console.log('Random positions:', randomPositions);
-
 export default function Cards() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [randomPositions, setRandomPositions] = useState<any>(null);
   gsap.registerPlugin(useGSAP);
   gsap.registerPlugin(ScrollTrigger);
 
   const container = useRef(null);
+
+  const randomSymbol = () => {
+    return Math.random() < 0.5 ? -1 : 1;
+  };
+
+  const generateRandomPosition = () => {
+    const randomX = Math.floor(Math.random() * 300) * randomSymbol();
+    const randomY = Math.floor(Math.random() * 300) * randomSymbol();
+    const randomRotation = Math.floor(Math.random() * 120) * randomSymbol();
+    return { rotation: randomRotation, y: `${randomY}px`, x: `${randomX}px` };
+  };
+
+  useEffect(() => {
+    setRandomPositions({
+      card1: generateRandomPosition(),
+      card2: generateRandomPosition(),
+      card3: generateRandomPosition(),
+      card4: generateRandomPosition(),
+    });
+  }, []);
+
   useGSAP(() => {
+    if (!randomPositions) return;
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '#section-2',
@@ -47,7 +51,7 @@ export default function Cards() {
       .from('#card-3', randomPositions.card3, '<0.1')
       .from('#card-4', randomPositions.card4, 0)
       .addLabel('end');
-  });
+  }, [randomPositions]);
 
   return (
     <div ref={container} className='container grid grid-cols-4 gap-4 h-full'>

@@ -5,8 +5,8 @@ import * as THREE from 'three';
 
 function Octahedrons() {
   const items = useRef<(THREE.Mesh | null)[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [scrollY, setScrollY] = useState(0);
-  console.log('Scroll Y:', scrollY);
   const speed = 0.75;
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
