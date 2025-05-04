@@ -24,12 +24,14 @@ export default function Cards() {
   };
 
   useEffect(() => {
-    setRandomPositions({
-      card1: generateRandomPosition(),
-      card2: generateRandomPosition(),
-      card3: generateRandomPosition(),
-      card4: generateRandomPosition(),
-    });
+    if (!randomPositions) {
+      setRandomPositions({
+        card1: generateRandomPosition(),
+        card2: generateRandomPosition(),
+        card3: generateRandomPosition(),
+        card4: generateRandomPosition(),
+      });
+    }
   }, []);
 
   useGSAP(() => {
