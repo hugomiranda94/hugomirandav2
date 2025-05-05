@@ -1,14 +1,24 @@
 import type { Metadata } from 'next';
-import { DotGothic16 } from 'next/font/google';
+import { Silkscreen, Source_Code_Pro } from 'next/font/google';
 import './globals.css';
 
-const dotGothic16 = DotGothic16({
-  variable: '--font-dot-gothic-16',
+const silkscreen = Silkscreen({
+  variable: '--font-silkscreen',
   subsets: ['latin'],
   weight: '400',
-  display: "swap",
-  style: ["normal"],
-  fallback: ["sans-serif"],
+  display: 'swap',
+  style: ['normal'],
+  fallback: ['sans-serif'],
+  preload: true,
+});
+
+const geo = Source_Code_Pro({
+  variable: '--font-scp',
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
+  style: ['normal'],
+  fallback: ['sans-serif'],
   preload: true,
 });
 
@@ -24,7 +34,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${dotGothic16.variable} antialiased`}>{children}</body>
+      <body className={`${silkscreen?.variable} ${geo?.variable} antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
