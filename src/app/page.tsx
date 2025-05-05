@@ -1,5 +1,4 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -17,6 +16,7 @@ export default function Home() {
       duration: { min: 0.2, max: 0.5 },
       delay: 0.1,
       ease: 'power2.inOut',
+      /* eslint-disable @typescript-eslint/no-unused-vars */
     } as any;
 
     const tl1 = gsap.timeline({
