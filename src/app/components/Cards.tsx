@@ -1,6 +1,6 @@
 export default function Cards() {
   return (
-    <div className='container grid grid-cols-4 gap-[10px] h-full'>
+    <div className='container grid grid-cols-4 gap-[10px] h-full relative z-20'>
       <Card id='card-1'>
         <h2 className='text-2xl font-bold uppercase text-right w-full'>
           Experience
@@ -45,7 +45,7 @@ const Card: React.FC<{ id: string; children: React.ReactNode }> = ({
   return (
     <div
       id={id}
-      className='flex flex-col gap-4 rounded-xl p-4 h-full text-[#222] bg-[#C5C1C0] border-b-10 border-[#C5C1C0] '
+      className='flex flex-col gap-4 p-4 h-full text-dark bg-offwhite opacity-25'
     >
       {children}
     </div>

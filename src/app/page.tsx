@@ -63,7 +63,7 @@ export default function Home() {
       scrollTrigger: {
         trigger: '#section-2',
         pin: false,
-        start: 'bottom center',
+        start: 'bottom 60%',
         end: 'bottom top',
         scrub: 0.5,
         snap: commonSnap,
@@ -80,8 +80,7 @@ export default function Home() {
   });
 
   return (
-    // <main className='bg-linear-to-br from-gray-100 to-[#F8F8F8] flex flex-col'>
-    <main className='bg-[#C5C1C0] flex flex-col'>
+    <main className='bg-background flex flex-col'>
       <section
         id='section-1'
         className='min-h-[100vh] relative flex justify-start items-end overflow-hidden'
@@ -91,9 +90,10 @@ export default function Home() {
       </section>
       <section
         id='section-2'
-        className='h-[66vh] w-full flex flex-col justify-center border-t-10 border-amber-600'
+        className='h-[66vh] w-full flex flex-col justify-center'
       >
-        <div className='flex flex-col items-center justify-center bg-[#222] p-16 h-full overflow-hidden border-b-10 border-[#222]'>
+        <div className='flex flex-col items-center justify-center bg-black p-16 h-full overflow-hidden relative'>
+
           <Cards />
         </div>
       </section>
